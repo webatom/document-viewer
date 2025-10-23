@@ -1,0 +1,20 @@
+<button type="button" class="control" tabindex="0" (click)="resetZoom()">
+  Reset
+</button>
+<button
+  type="button"
+  class="control"
+  tabindex="0"
+  (click)="zoomOut()"
+  [disabled]="isDisableDecrement()">
+  -
+</button>
+<span class="value">{{ zoomValue() }}</span>
+<button
+  type="button"
+  class="control"
+  tabindex="0"
+  (click)="zoomIn()"
+  [disabled]="isDisableIncrement()">
+  +
+</button>

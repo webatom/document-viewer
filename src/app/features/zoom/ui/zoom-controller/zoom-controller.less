@@ -1,0 +1,31 @@
+:host {
+  display: flex;
+  align-items: center;
+  color: gray;
+  gap: 4px;
+}
+
+.value {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fafafa;
+  height: 28px;
+  width: 32px;
+  font-weight: bold;
+  font-size: 20px;
+  border: 1px solid gray;
+}
+
+.control { 
+  min-width: 28px;
+  height: 30px;
+  border: 1px solid gray;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: .8;
+    background-color: gray;
+  }
+}

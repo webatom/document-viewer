@@ -1,0 +1,23 @@
+@let doc = document();
+@if (isLoading()) {
+  Document is loading...
+} @else if (hasError()) {
+  Error (see logs)
+} @else if (doc) {
+  <toolbar [title]="doc.name">
+    <div actions class="toolbar-actions">
+      <zoom-controller></zoom-controller>
+    </div>
+  </toolbar>
+  <main class="document-viewer">
+    <div class="document-viewer__viewport" [style.width]="zoomInPercent()">
+      @for (page of doc.pages; track page.number) {
+        @defer (on viewport) {
+          <page-viewer [page]="page"></page-viewer>
+        } @placeholder {
+          <span>page is loading ...</span>
+        }
+      }
+    </div>
+  </main>
+}

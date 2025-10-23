@@ -1,0 +1,9 @@
+@let _page = page();
+
+<img
+  class="page-image"
+  [src]="'assets/' + _page.imageUrl"
+  [alt]="'Page ' + _page.number"
+  loading="lazy"
+  width="794"
+  height="1123" />

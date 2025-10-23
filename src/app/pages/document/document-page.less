@@ -1,0 +1,26 @@
+:host{
+    display: block;
+}
+
+.document-viewer {
+    padding:24px 0;
+    overflow: auto;
+    height: 100%;
+
+    align-items: center;
+    background-color: gray;
+    width: 100%;
+
+
+    &__viewport{
+    margin: auto;
+    transition: width .2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    }
+}
+.toolbar-actions{ 
+    display: flex;
+    gap: 8px;
+}
