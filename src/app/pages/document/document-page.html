@@ -12,11 +12,7 @@
   <main class="document-viewer">
     <div class="document-viewer__viewport" [style.width]="zoomInPercent()">
       @for (page of doc.pages; track page.number) {
-        @defer (on viewport) {
-          <page-viewer [page]="page"></page-viewer>
-        } @placeholder {
-          <span>page is loading ...</span>
-        }
+        <page-viewer [page]="page"></page-viewer>
       }
     </div>
   </main>

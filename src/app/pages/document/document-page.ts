@@ -17,7 +17,7 @@ export class DocumentPageComponent implements OnInit {
   public readonly document = this.documentPageService.document;
   public readonly isLoading = this.documentPageService.isLoading;
   public readonly hasError = this.documentPageService.hasError;
-  public readonly zoomInPercent = computed(() => `${this.zoomService.zoomValue()}%`);
+  public readonly zoomInPercent = computed(() => `${this.zoomService.zoomValue() - 30}%`);
 
   public ngOnInit(): void {
     this.documentPageService.init();
