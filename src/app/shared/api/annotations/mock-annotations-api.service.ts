@@ -12,7 +12,7 @@ export class MockAnnotationsApiService implements AnnotationsApiService {
     if (annotations.length === 0) {
       console.log('Annotations is empty');
     }
-
+    console.log('Document annotations');
     const groupedAnnotations = Object.groupBy(annotations, ({ pageNumber }) => pageNumber);
     for (const [pageNumber, annotationList] of Object.entries(groupedAnnotations)) {
       console.groupCollapsed(`Page ${pageNumber}:`);
