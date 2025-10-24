@@ -27,7 +27,7 @@ src/app/
 ## Сильные стороны реализации
 
 - **Современный Angular**: Использование Angular 20 с новейшими возможностями (signals, computed, zoneless change detection)
-- **Чистая архитектура**: Feature-based структура с четким разделением ответственности
+- **Архитектура**: Feature-based структура с четким разделением ответственности
 - **TypeScript**: Строгая типизация с интерфейсами для всех моделей данных
 - **Dependency Injection**: Использование Angular DI системы
 - **Code quality tools**: ESLint, Prettier, Husky для поддержания качества
