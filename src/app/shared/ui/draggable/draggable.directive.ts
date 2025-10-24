@@ -1,4 +1,5 @@
 import { Directive, ElementRef, inject, input, output, signal, HostListener } from '@angular/core';
+import { calculateClampPositionInPercent } from '../../utils';
 
 export interface DragPosition {
   x: number;
@@ -105,22 +106,10 @@ export class DraggableDirective {
     const initialYPixels = (this.initialPosition.y / 100) * containerRect.height;
 
     // Вычисляем новую позицию в пикселях
-    let newXPixels = initialXPixels + deltaX;
-    let newYPixels = initialYPixels + deltaY;
+    const newXPixels = initialXPixels + deltaX;
+    const newYPixels = initialYPixels + deltaY;
 
-    // Ограничиваем перетаскивание границами контейнера
-    const maxX = containerRect.width - elementRect.width;
-    const maxY = containerRect.height - elementRect.height;
-
-    // Ограничиваем координаты в пикселях
-    newXPixels = Math.max(0, Math.min(newXPixels, maxX));
-    newYPixels = Math.max(0, Math.min(newYPixels, maxY));
-
-    // Конвертируем пиксели обратно в проценты
-    const newXPercent = (newXPixels / containerRect.width) * 100;
-    const newYPercent = (newYPixels / containerRect.height) * 100;
-
-    return { x: newXPercent, y: newYPercent };
+    return calculateClampPositionInPercent(newXPixels, newYPixels, elementRect, containerRect);
   }
 
   private updatePosition(position: DragPosition) {

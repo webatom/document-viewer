@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Provider } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IDocument } from '../../models';
-import { DocumentApiService } from './documents-api.service';
+import { DocumentsApiService } from './documents-api.service';
 
 export const provideMockDocumentsApi: () => Provider[] = () => [
-  { provide: DocumentApiService, useClass: MockDocumentApiService },
+  { provide: DocumentsApiService, useClass: MockDocumentsApiService },
 ];
 
-export class MockDocumentApiService implements DocumentApiService {
+export class MockDocumentsApiService implements DocumentsApiService {
   private readonly path = 'assets/mock/documents';
   private readonly httpClient = inject(HttpClient);
 

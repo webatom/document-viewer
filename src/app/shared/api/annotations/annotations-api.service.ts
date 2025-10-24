@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IDocument } from '../../models';
+import { IAnnotation } from '../../models';
 
 @Injectable({ providedIn: 'root' })
-export class DocumentsApiService {
-  getById(id: string): Observable<IDocument> {
+export class AnnotationsApiService {
+  save(list: IAnnotation[]): Observable<IAnnotation[]> {
     throw 'Unimplemented';
   }
 }

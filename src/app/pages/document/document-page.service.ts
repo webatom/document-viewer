@@ -1,6 +1,6 @@
 import { DestroyRef, inject, Injectable } from '@angular/core';
 import { catchError, finalize, map, of } from 'rxjs';
-import { DocumentApiService } from '../../shared';
+import { AnnotationsApiService, DocumentsApiService, IAnnotation } from '../../shared';
 import { ActivatedRoute } from '@angular/router';
 import { DocumentPageStore } from './store/document-page.store';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
@@ -8,7 +8,8 @@ import { uid } from 'uid';
 
 @Injectable()
 export class DocumentPageService {
-  private readonly documentApi = inject(DocumentApiService);
+  private readonly documentsApi = inject(DocumentsApiService);
+  private readonly annotationsApiService = inject(AnnotationsApiService);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly documentPageStore = inject(DocumentPageStore);
   private readonly destroyRef = inject(DestroyRef);
@@ -64,9 +65,21 @@ export class DocumentPageService {
     this.documentPageStore.deleteAnnotation(pageNumber, id);
   }
 
+  saveAnnotations(): void {
+    this.annotationsApiService.save(this.getAnnotationList());
+  }
+
+  private getAnnotationList(): IAnnotation[] {
+    const record = this.annotationsRecord();
+    if (!record) {
+      return [];
+    }
+    return Object.values(record).flatMap((t) => t);
+  }
+
   private loadDocument(id: string) {
     this.documentPageStore.setIsDocumentLoading(true);
-    this.documentApi
+    this.documentsApi
       .getById(id)
       .pipe(
         catchError((e) => {

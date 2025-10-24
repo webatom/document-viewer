@@ -47,6 +47,10 @@ export class DocumentPageComponent implements OnInit {
     });
   }
 
+  onSaveAnnotations(): void {
+    this.documentPageService.saveAnnotations();
+  }
+
   onAnnotationPositionChange(
     pageNumber: number,
     id: string,

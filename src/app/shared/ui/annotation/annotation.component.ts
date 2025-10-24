@@ -17,7 +17,6 @@ import { IAnnotation } from '../../models';
 })
 export class AnnotationComponent implements AfterViewInit {
   public readonly annotation = input.required<IAnnotation>();
-  public readonly container = input.required<HTMLElement>();
   public readonly textChange = output<string>();
   public readonly delete = output<void>();
   public readonly elementRef = inject(ElementRef);

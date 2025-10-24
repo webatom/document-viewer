@@ -4,6 +4,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { provideMockDocumentsApi } from './shared';
+import { provideMockAnnotationsApi } from './shared/api/annotations/mock-annotations-api.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -11,5 +12,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(),
     provideMockDocumentsApi(),
+    provideMockAnnotationsApi(),
   ],
 };

@@ -7,6 +7,14 @@
   <toolbar [title]="doc.name">
     <div actions class="toolbar-actions">
       <zoom-controller></zoom-controller>
+      <button
+        type="button"
+        title="Save"
+        class="save-btn"
+        tabindex="0"
+        (click)="onSaveAnnotations()">
+        Save
+      </button>
     </div>
   </toolbar>
   @let zoom = zoomInPercent();
