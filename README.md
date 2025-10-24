@@ -4,6 +4,16 @@
 
 [Demo](https://webatom.github.io/document-viewer/)
 
+## Локальный запуск
+
+```bash
+  # если используется nvm, либо установить nodejs нужной версии (см. .nvmrc)
+  nvm use
+
+  npm i
+  npm start
+```
+
 ## Структура проекта
 
 ```
