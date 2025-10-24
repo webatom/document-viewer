@@ -14,6 +14,7 @@ export class DocumentPageService {
   private readonly documentPageStore = inject(DocumentPageStore);
   private readonly destroyRef = inject(DestroyRef);
   private readonly pageState$ = this.documentPageStore.state$;
+  private readonly documentId = this.activatedRoute.snapshot.paramMap.get('id');
 
   public readonly document = toSignal(this.pageState$.pipe(map(({ document }) => document)), {
     initialValue: null,
@@ -33,14 +34,13 @@ export class DocumentPageService {
   );
 
   init() {
-    const documentId = this.activatedRoute.snapshot.paramMap.get('id');
-    if (!documentId) {
+    if (!this.documentId) {
       console.error('The `documentName` param not found');
       this.documentPageStore.setHasDocumentError(true);
       return;
     }
 
-    this.loadDocument(documentId);
+    this.loadDocument(this.documentId);
   }
 
   addAnnotation(pageNumber: number, { x, y }: { x: number; y: number }) {
@@ -66,7 +66,9 @@ export class DocumentPageService {
   }
 
   saveAnnotations(): void {
-    this.annotationsApiService.save(this.getAnnotationList());
+    if (this.documentId) {
+      this.annotationsApiService.save(this.documentId, this.getAnnotationList());
+    }
   }
 
   private getAnnotationList(): IAnnotation[] {

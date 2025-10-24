@@ -4,7 +4,7 @@ import { IAnnotation } from '../../models';
 
 @Injectable({ providedIn: 'root' })
 export class AnnotationsApiService {
-  save(list: IAnnotation[]): Observable<IAnnotation[]> {
+  save(documentId: string, list: IAnnotation[]): Observable<IAnnotation[]> {
     throw 'Unimplemented';
   }
 }
