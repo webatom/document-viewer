@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit } from '@angular/core';
 import {
   PageViewerComponent,
   ToolbarComponent,
@@ -20,6 +20,7 @@ import { ZoomControllerComponent, ZoomService } from '../../features/zoom';
     AnnotationComponent,
     DraggableDirective,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [DocumentPageService, DocumentPageStore],
 })
 export class DocumentPageComponent implements OnInit {

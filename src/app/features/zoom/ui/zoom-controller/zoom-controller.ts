@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ZoomService } from '../../services';
 
 @Component({
   selector: 'zoom-controller',
   templateUrl: './zoom-controller.html',
   styleUrl: './zoom-controller.less',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ZoomControllerComponent {
   private readonly zoomService = inject(ZoomService);

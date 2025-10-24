@@ -15,7 +15,6 @@ export interface DragEvent {
 const DRAG_THRESHOLD = 5;
 @Directive({
   selector: '[draggable]',
-  standalone: true,
 })
 export class DraggableDirective {
   private readonly elementRef = inject(ElementRef<HTMLElement>);

@@ -7,6 +7,7 @@ import {
   effect,
   AfterViewInit,
   inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { IAnnotation } from '../../models';
 
@@ -14,6 +15,7 @@ import { IAnnotation } from '../../models';
   selector: 'annotation',
   templateUrl: './annotation.component.html',
   styleUrl: './annotation.component.less',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AnnotationComponent implements AfterViewInit {
   public readonly annotation = input.required<IAnnotation>();
