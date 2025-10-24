@@ -1,10 +1,16 @@
-<button type="button" class="control" tabindex="0" (click)="resetZoom()">
+<button
+  type="button"
+  title="Reset"
+  class="control"
+  tabindex="0"
+  (click)="resetZoom()">
   Reset
 </button>
 <button
   type="button"
   class="control"
   tabindex="0"
+  title="Decrement"
   (click)="zoomOut()"
   [disabled]="isDisableDecrement()">
   -
@@ -14,6 +20,7 @@
   type="button"
   class="control"
   tabindex="0"
+  title="Increment"
   (click)="zoomIn()"
   [disabled]="isDisableIncrement()">
   +

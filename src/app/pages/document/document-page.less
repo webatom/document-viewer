@@ -1,22 +1,33 @@
 :host {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .document-viewer {
-    padding: 24px 0;
-    overflow: auto;
-    height: 100%;
-    background-color: lightgray;
+  height: 100%;
+  padding: 24px 0;
+  overflow: auto;
+  background-color: lightgray;
 
-    &__viewport{
-        margin: auto;
-        transition: width .2s ease;
-        gap: 16px;
-    }
+  &__viewport {
+    gap: 16px;
+    margin: auto;
+    transition: width 0.2s ease;
+  }
 }
-.toolbar-actions{ 
-    display: flex;
-    gap: 8px;
+
+.toolbar-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.page-container {
+  position: relative;
+  margin: 0 16px 16px;
+}
+
+.page-annotation {
+  --annotation-transition: transform 0.2 opacity 0.2 ease box-shadow 0.2 ease;
+  transform-origin: 0px 0px;
 }

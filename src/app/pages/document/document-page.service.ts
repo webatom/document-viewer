@@ -4,6 +4,7 @@ import { DocumentApiService } from '../../shared';
 import { ActivatedRoute } from '@angular/router';
 import { DocumentPageStore } from './store/document-page.store';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { uid } from 'uid';
 
 @Injectable()
 export class DocumentPageService {
@@ -26,6 +27,10 @@ export class DocumentPageService {
     { initialValue: false },
   );
 
+  public readonly annotationsRecord = toSignal(
+    this.pageState$.pipe(map(({ annotationsRecord }) => annotationsRecord)),
+  );
+
   init() {
     const documentId = this.activatedRoute.snapshot.paramMap.get('id');
     if (!documentId) {
@@ -35,6 +40,28 @@ export class DocumentPageService {
     }
 
     this.loadDocument(documentId);
+  }
+
+  addAnnotation(pageNumber: number, { x, y }: { x: number; y: number }) {
+    this.documentPageStore.addAnnotation({
+      id: uid(),
+      pageNumber,
+      text: '',
+      x,
+      y,
+    });
+  }
+
+  changeAnnotationPosition(pageNumber: number, id: string, { x, y }: { x: number; y: number }) {
+    this.documentPageStore.changeAnnotation(pageNumber, id, { x, y });
+  }
+
+  changeAnnotationText(pageNumber: number, id: string, text: string) {
+    this.documentPageStore.changeAnnotation(pageNumber, id, { text });
+  }
+
+  deleteAnnotation(pageNumber: number, id: string) {
+    this.documentPageStore.deleteAnnotation(pageNumber, id);
   }
 
   private loadDocument(id: string) {

@@ -1,0 +1,23 @@
+@let _annotation = annotation();
+
+<button
+  class="delete-btn"
+  type="button"
+  (click)="stopEvent($event); onDelete()"
+  title="Delete">
+  ×
+</button>
+
+<div class="annotation-content">
+  <textarea
+    [id]="_annotation.id"
+    #textarea
+    name="annotation"
+    class="annotation-text"
+    [value]="_annotation.text"
+    (input)="onTextChange($event)"
+    (click)="focusTextarea(); stopEvent($event)"
+    placeholder="Enter text..."
+    rows="2">
+  </textarea>
+</div>

@@ -9,10 +9,35 @@
       <zoom-controller></zoom-controller>
     </div>
   </toolbar>
+  @let zoom = zoomInPercent();
   <main class="document-viewer">
-    <div class="document-viewer__viewport" [style.width]="zoomInPercent()">
+    <div class="document-viewer__viewport" [style.width]="zoom">
       @for (page of doc.pages; track page.number) {
-        <page-viewer [page]="page"></page-viewer>
+        <div #pageContainer class="page-container">
+          <page-viewer
+            [page]="page"
+            (dblclick)="
+              onPageDoubleClick($event, page.number, pageContainer)
+            "></page-viewer>
+          @let annotations = annotationsRecord()?.[page.number] ?? [];
+
+          @for (annotation of annotations; track annotation.id) {
+            <annotation
+              draggable
+              (dragEnd)="
+                onAnnotationPositionChange(page.number, annotation.id, $event)
+              "
+              class="page-annotation"
+              [style.transform]="`scale(${zoom})`"
+              [annotation]="annotation"
+              [container]="pageContainer"
+              (textChange)="
+                onAnnotationTextChange(page.number, annotation.id, $event)
+              "
+              (delete)="onAnnotationDelete(page.number, annotation.id)">
+            </annotation>
+          }
+        </div>
       }
     </div>
   </main>
